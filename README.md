@@ -1,2 +1,3 @@
-# telegram_reminder_from_gdocs
+# Telegram reminder from google sheets
 Telegram bot that sent changes from google docs
+https://developers.google.com/sheets/api/
