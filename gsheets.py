@@ -1,5 +1,5 @@
 def get_user_name(service, spreadsheet_id):
-    range_name = 'A1:A1'
+    range_name = 'A5:A11'
     sheet = service.spreadsheets()
 
     result = sheet.values().get(spreadsheetId=spreadsheet_id,
@@ -12,4 +12,4 @@ def get_user_name(service, spreadsheet_id):
 
     else:
         for row in values:
-            print(row)
+            print(row[0])
