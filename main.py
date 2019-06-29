@@ -10,8 +10,9 @@ from google.auth.transport.requests import Request
 
 
 def main():
-    """Shows basic usage of the Sheets API.
-    Prints values from a spreadsheet.
+    """
+        Shows basic usage of the Sheets API.
+        Prints values from a spreadsheet.
     """
     creds = None
 
