@@ -3,10 +3,12 @@ from __future__ import print_function
 import pickle
 import os.path
 import gsheets
+import slack_bot
 
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from slackclient import SlackClient
 
 
 def main():
@@ -43,10 +45,24 @@ def main():
 
     service = build('sheets', 'v4', credentials=creds)
 
+    #
+    # load access token
+    f = open("access.txt", 'r')
+    acc = f.readline()
+    f.close()
+
+    # instantiate Slack client
+    slack_client = SlackClient(acc)
+
     # The ID and range of a sample spreadsheet.
     spreadsheet_id = '15GCDx1G46ux8-VhBQzXu5nK8lL2BkeKcF-24bhlQWAA'
 
-    gsheets.get_user_name(service, spreadsheet_id)
+    user = input("Enter your lastname: ")
+
+    user_cells = gsheets.get_user_cell(service, spreadsheet_id, user)
+
+    if not user_cells:
+        slack_bot.send_message(slack_client, "Ты даже не гражданин! \n https://www.youtube.com/watch?v=UOkpO--XtH0")
 
 
 if __name__ == '__main__':

@@ -1,15 +1,22 @@
-def get_user_name(service, spreadsheet_id):
-    range_name = 'A5:A11'
+def get_user_cell(service, spreadsheet_id, user):
+    range_literal = 'A'
+    range_number = 4
+
     sheet = service.spreadsheets()
 
-    result = sheet.values().get(spreadsheetId=spreadsheet_id,
-                                range=range_name).execute()
+    list_of_cells = []
 
-    values = result.get('values', [])
+    while range_number < 30:
+        range_name = range_literal + str(range_number)
+        result = sheet.values().get(spreadsheetId=spreadsheet_id,
+                                    range=range_name).execute()
 
-    if not values:
-        print('No data found.')
+        values = result.get('values', [])
 
-    else:
-        for row in values:
-            print(row[0])
+        if values:
+            if values[0][0] == user:
+                list_of_cells.append(range_number)
+
+        range_number += 1
+
+    return list_of_cells

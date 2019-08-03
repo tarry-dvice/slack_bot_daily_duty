@@ -103,7 +103,10 @@ venv.bak/
 .mypy_cache/
 
 /.idea
+_mac/
+codestyles/
 .DS_Store
 credentials.json
 token.pickle
 access.txt
+*.xml
