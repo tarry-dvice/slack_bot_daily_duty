@@ -1,4 +1,8 @@
 def get_user_cell(service, spreadsheet_id, user):
+    """
+        Get username from sheets
+    """
+
     range_literal = 'A'
     range_number = 4
 

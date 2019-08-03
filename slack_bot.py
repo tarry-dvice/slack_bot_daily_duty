@@ -1,15 +1,13 @@
-from slackclient import SlackClient
-
-# load access token
-f = open("access.txt", 'r')
-acc = f.readline()
-f.close()
-
-# instantiate Slack client
-slack_client = SlackClient(acc)
+from access import aut_slack
 
 
 def send_message(client, message):
+    """
+        Send message to user from Slack bot
+    """
+
+    slack_client = aut_slack()
+
     if client.rtm_connect(with_team_state=False):
         print("Daily Duty Bot connected and running!")
 
